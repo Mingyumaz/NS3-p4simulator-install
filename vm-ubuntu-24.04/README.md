@@ -1,5 +1,24 @@
 Taken from https://github.com/p4lang/tutorials/tree/master/vm-ubuntu-24.04, change some of the 3rd tools in build up steps.
 
+PS: We build the ns3.27 on that VM. [Verified]
+
+1. Set up the virtual env for python 3.6 (ns-3.27)
+2. Build with tools `sudo apt-get install gcc-9 g++-9`
+3. Configure ns3 with `CXX=g++-9 CC=gcc-9 ./waf configure --enable-examples --enable-tests`
+4. Modifiy the src code:
+
+```
+(ns3env) p4@p4:~/ns-3-dev-git$ vim src/mesh/model/dot11s/ie-dot11s-beacon-timing.cc
+change "catch (std::bad_cast)" to "catch (const std::bad_cast&)"
+```
+5. download the p4simulator and checkout to the branch.
+
+
+References.
+[libboost1.74-all-dev_1.74.0-14ubuntu3_arm64.deb.html](https://ubuntu.pkgs.org/22.04/ubuntu-universe-arm64/libboost1.74-all-dev_1.74.0-14ubuntu3_arm64.deb.html) 
+[ld-cannot-find-an-existing-library](https://stackoverflow.com/questions/335928/ld-cannot-find-an-existing-library)
+
+
 # Introduction
 
 This directory is still new and a bit experimental at this point.
